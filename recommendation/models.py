@@ -1,3 +1,6 @@
 from django.db import models
+from playlist.models import playlist
 
-# Create your models here.
+class recommendation (models.Model) :
+    id_recommendation = models.AutoField(primary_key=True)
+    id_playlist = models.ForeignKey(playlist, related_name='idplaylist', on_delete=models.CASCADE)
