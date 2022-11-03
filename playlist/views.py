@@ -83,19 +83,20 @@ class PlayList_Detail (generics.RetrieveUpdateDestroyAPIView):
         return Response({"message": "id has been delete"})
 
 # @csrf_exempt
-# @api_view(["PUT", "GET"])
+# @api_view(["GET"])
 # @permission_classes([AllowAny])
-# def getbytitle (request):
+# def getbytitle (request, *args, **kwargs):
 
-#     if request.method == 'GET' :
+#     if request.method == 'GET':
 #         try :
-#             Mymodels = playlist.objects.filter(title=request.GET['title'])
-#             Serializers = PlaylistSerializer (Mymodels, many=True)
+#             keyword = request.GET['id_genre']
+#             mymodels = playlist.objects.filter(id_genre=keyword)
 
+#             localserializer = PlaylistSerializer (mymodels, many=True)
 #             formater = {
-#                 "Playlist" : Serializers.data
+#                             "playlist": localserializer.data,
 #             }
-
-#             return JsonResponse({'message': 'successfully', 'status': True, 'count': 1, 'results': formater})
+            
+#             return JsonResponse({'message' : 'successfully' , 'status' : True , 'count' : 1 , 'results' : formater})
 #         except playlist.DoesNotExist:
-#             return JsonResponse({'message': 'unsuccessfully', 'status': False, 'count': 1, 'results': "title not found!!"})
+#             return Response(status=status.HTTP_404_NOT_FOUND)
