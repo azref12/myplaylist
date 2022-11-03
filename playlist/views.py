@@ -81,3 +81,21 @@ class PlayList_Detail (generics.RetrieveUpdateDestroyAPIView):
         queryset = playlist.objects.get(id_playlist=pk)
         queryset.delete()
         return Response({"message": "id has been delete"})
+
+# @csrf_exempt
+# @api_view(["PUT", "GET"])
+# @permission_classes([AllowAny])
+# def getbytitle (request):
+
+#     if request.method == 'GET' :
+#         try :
+#             Mymodels = playlist.objects.filter(title=request.GET['title'])
+#             Serializers = PlaylistSerializer (Mymodels, many=True)
+
+#             formater = {
+#                 "Playlist" : Serializers.data
+#             }
+
+#             return JsonResponse({'message': 'successfully', 'status': True, 'count': 1, 'results': formater})
+#         except playlist.DoesNotExist:
+#             return JsonResponse({'message': 'unsuccessfully', 'status': False, 'count': 1, 'results': "title not found!!"})

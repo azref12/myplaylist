@@ -83,22 +83,3 @@ def playlist_id(request, pk):
             return JsonResponse({"message": "successfully", "results": formater})
         else:
             return JsonResponse({"message": "unsuccessfully", "results": "playlist not found!!!"})
-
-# @csrf_exempt
-# @api_view(["PUT", "GET"])
-# @permission_classes([AllowAny])
-# def getbytitle (request, *args, **kwargs):
-
-#     if request.method == 'GET' :
-#         try :
-#             Mymodels = playlist.objects.filter(title=request.GET['title'])
-#             Serializers = PlaylistSerializer (Mymodels, many=True)
-
-#             formater = {
-#                 # "master" : myserializers.data,
-#                 "details" : Serializers.data
-#             }
-
-#             return JsonResponse({'message': 'successfully', 'status': True, 'count': 1, 'results': formater})
-#         except playlist.DoesNotExist:
-#             return JsonResponse({'message': 'unsuccessfully', 'status': False, 'count': 1, 'results': "title not found!!"})
