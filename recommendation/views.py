@@ -27,6 +27,7 @@ from . serializers import RecommendSerializer
 from playlist.models import playlist
 from playlist.serializers import PlaylistSerializer
 
+
 @csrf_exempt
 @api_view(["GET", "POST"])
 @permission_classes([AllowAny])
