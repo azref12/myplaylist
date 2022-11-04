@@ -82,21 +82,26 @@ class PlayList_Detail (generics.RetrieveUpdateDestroyAPIView):
         queryset.delete()
         return Response({"message": "id has been delete"})
 
-# @csrf_exempt
-# @api_view(["GET"])
-# @permission_classes([AllowAny])
-# def getbytitle (request, *args, **kwargs):
+@csrf_exempt
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def getbytitle (request, *args, **kwargs):
 
-#     if request.method == 'GET':
-#         try :
-#             keyword = request.GET['id_genre']
-#             mymodels = playlist.objects.filter(id_genre=keyword)
+    if request.method == 'GET':
+   
+        try :
+            x = request.GET['id_playlist']
+            localmodel = list(playlist.objects.all().extra(
+            select ={"id_playlist":'playlist_playlist.id_playlist',"title":'playlist_playlist.title',
+                     "director": "playlist_playlist.director","writer":"playlist_playlist.writer",
+                     "release_date":"playlist_playlist.release_date","runtime":"playlist_playlist.runtime",
+                     "language":"playlist_playlist.language","country":"playlist_playlist.country"}, 
+            tables=['playlist_playlist'], where=['id_playlist = '+ x]).values('id_playlist','title', 'director', 'writer','release_date','runtime','language','country'))
 
-#             localserializer = PlaylistSerializer (mymodels, many=True)
-#             formater = {
-#                             "playlist": localserializer.data,
-#             }
+            formater = {
+                "playlist": localmodel,
+            }
             
-#             return JsonResponse({'message' : 'successfully' , 'status' : True , 'count' : 1 , 'results' : formater})
-#         except playlist.DoesNotExist:
-#             return Response(status=status.HTTP_404_NOT_FOUND)
+            return JsonResponse({'message' : 'successfully' , 'status' : True , 'count' : 1 , 'results' : formater})
+        except playlist.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
