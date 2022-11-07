@@ -106,23 +106,3 @@ def getbytitle (request, *args, **kwargs):
             return JsonResponse({'message' : 'successfully' , 'status' : True , 'count' : 1 , 'results' : formater})
         except playlist.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        
-# @csrf_exempt
-# @api_view(["GET"])
-# @permission_classes([AllowAny])
-# def search_by_title (request):
-
-#     if request.method == 'GET':
-        
-#         try :
-#             # title=request.GET['title']
-#             localmodel = playlist.objects.filter(title=request.GET['title'])
-#             localserializer = PlaylistSerializer (localmodel, many=True)
-
-#             formater = {
-#                 "playlist": localserializer.data
-#             }
-
-#             return JsonResponse({'message' : 'successfully' , 'status' : True , 'count' : 1 , 'results' : formater})
-#         except playlist.DoesNotExist:
-#             return Response(status=status.HTTP_404_NOT_FOUND)
