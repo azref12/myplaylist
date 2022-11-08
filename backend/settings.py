@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from datetime import timedelta
 from pickle import FALSE
 from decouple import Config, RepositoryEnv, Csv
-import pymysql
+# import pymysql
 import base64
 import os 
 import os.path
@@ -71,6 +71,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 'DIRS': ['templates'],
         'DIRS': [
             os.path.join(BASE_DIR, 'templates')
         ],
