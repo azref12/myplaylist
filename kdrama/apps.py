@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class RecommendationConfig(AppConfig):
+class KdramaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'recommendation'
+    name = 'kdrama'

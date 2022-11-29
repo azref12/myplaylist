@@ -50,8 +50,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'category',
+    'kdrama',
     'playlist',
-    'recommendation',
 ]
 
 MIDDLEWARE = [

@@ -23,7 +23,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import category, genre
-from .serializers import CategorySerilaizer, GenreSerilaizer
+from .serializers import CategorySerializer, GenreSerializer
 
 @csrf_exempt
 @api_view(["GET", "POST"])
@@ -31,12 +31,12 @@ from .serializers import CategorySerilaizer, GenreSerilaizer
 def category_list (request):
     
         mymodels = category
-        myserializer = CategorySerilaizer
+        myserializer = CategorySerializer
 
         if request.method == 'GET':
             
                 mymodels = category.objects.all()
-                myserializer = CategorySerilaizer (mymodels, many=True)
+                myserializer = CategorySerializer (mymodels, many=True)
                 
                 return JsonResponse({'message' : 'successfully', 'results' : myserializer.data})
     
@@ -67,7 +67,7 @@ def category_list (request):
 def category_detail (request, pk):
     
         mymodels = category
-        myserializer = CategorySerilaizer
+        myserializer = CategorySerializer
         
         try:
                 localmodel = mymodels.objects.get(id_category=pk)
@@ -86,7 +86,7 @@ def category_detail (request, pk):
                         checkcategory = category.objects.filter(id_category=pk).count()
                         if checkcategory != 0:
                                 modelcategory = category.objects.get(id_category=pk)
-                                categoryserializer = CategorySerilaizer(modelcategory, data=localrequest, partial=True)
+                                categoryserializer = CategorySerializer(modelcategory, data=localrequest, partial=True)
 
                                 if categoryserializer.is_valid():
                                         categoryserializer.save(
@@ -114,12 +114,12 @@ def category_detail (request, pk):
 def genre_list (request):
     
         mymodels = genre
-        myserializer = GenreSerilaizer
+        myserializer = GenreSerializer
 
         if request.method == 'GET':
             
                 mymodels = genre.objects.all()
-                myserializer = GenreSerilaizer (mymodels, many=True)
+                myserializer = GenreSerializer (mymodels, many=True)
                 
                 return JsonResponse({'message' : 'successfully', 'results' : myserializer.data})
     
@@ -150,7 +150,7 @@ def genre_list (request):
 def genre_detail (request, pk):
     
         mymodels = genre
-        myserializer = GenreSerilaizer
+        myserializer = GenreSerializer
         
         try:
                 localmodel = mymodels.objects.get(id_genre=pk)
@@ -169,7 +169,7 @@ def genre_detail (request, pk):
                         checkgenre = genre.objects.filter(id_genre=pk).count()
                         if checkgenre != 0:
                                 modelgenre = genre.objects.get(id_genre=pk)
-                                genreserializer = GenreSerilaizer (modelgenre, data=localrequest, partial=True)
+                                genreserializer = GenreSerializer (modelgenre, data=localrequest, partial=True)
 
                                 if genreserializer.is_valid():
                                         genreserializer.save(
